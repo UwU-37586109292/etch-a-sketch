@@ -23,11 +23,17 @@ body {
 }
 
 .grid-container {
+    border: 1px solid black;
     width: 600px;
     height: 600px;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    grid-gap: 1px;
+    grid-gap: 0px;
     background-color: white;
+}
+
+.grid-element {
+    border: 1px solid black;
+    margin: 0px;
 }
