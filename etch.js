@@ -13,3 +13,14 @@ function createGrid(size) {
         }
     }
 }
+
+const gridElementsList = document.querySelectorAll('.grid-element');
+gridElementsList.forEach(gridElement => {
+    gridElement.addEventListener("mouseover", addBackground);
+});
+
+function addBackground(event) {
+    console.log(event);
+    event.toElement.style.backgroundColor = 'red';
+    // element.style.addBackground = 'red';
+}
