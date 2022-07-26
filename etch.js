@@ -71,8 +71,11 @@ function addBackground(event) {
     event.toElement.style.backgroundColor = color;
 }
 function getRandomColor() {
-    Math.floor(Math.random() * 255);
-    return 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+    let rgb1 = Math.floor(Math.random() * 255);
+    let rgb2 = Math.floor(Math.random() * 255);
+    let rgb3 = Math.floor(Math.random() * 255);
+
+    return `rgb(${rgb1},${rgb2}, ${rgb3})`;
 }
 function resetBoard() {
     const gridElementsList = document.querySelectorAll('.grid-element');
