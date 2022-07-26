@@ -2,11 +2,17 @@ let color = 'red';
 const MAX_BOARD_SIZE = 100;
 let randomMode = false;
 
-createGrid(15);
+createGrid(16);
 document.querySelector('button.reset').addEventListener('click', resetBoard);
 document.querySelector('button.new').addEventListener('click', drawNewBoard);
 document.querySelector('button.hideLines').addEventListener('click', changeGridLineVisibility);
 document.querySelector('button.colorsRandom').addEventListener('click', changeColorToRandomRoulette);
+document.querySelector('#colorpicker').addEventListener('change', updateColorFromPicker);
+
+function updateColorFromPicker(e) {
+    color = e.target.value;
+    randomMode = false;
+}
 
 function changeColorToRandomRoulette() {
     randomMode = true;
@@ -28,11 +34,11 @@ function changeGridLineVisibility() {
 function drawNewBoard() {
     let size = prompt('Provide size of new board');
     size = parseInt(size);
-    if (typeof size === "number" && size <= 100 && size > 0) {
+    if (typeof size === "number" && size <= MAX_BOARD_SIZE && size > 0) {
         removeBoard();
         createGrid(size);
         resetBoard();
-    } else if (size > 100 || size < 1) {
+    } else if (size > MAX_BOARD_SIZE || size < 1) {
         alert(`Maximum board size is ${MAX_BOARD_SIZE}! And minimum is 1`);
     } else {
         alert('Don\'t be too cheeky...');
