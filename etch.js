@@ -1,21 +1,27 @@
 let color = 'red';
 const MAX_BOARD_SIZE = 100;
-
+let randomMode = false;
 
 createGrid(15);
 document.querySelector('button.reset').addEventListener('click', resetBoard);
 document.querySelector('button.new').addEventListener('click', drawNewBoard);
 document.querySelector('button.hideLines').addEventListener('click', changeGridLineVisibility);
+document.querySelector('button.colorsRandom').addEventListener('click', changeColorToRandomRoulette);
+
+function changeColorToRandomRoulette() {
+    randomMode = true;
+}
 
 function changeGridLineVisibility() {
     const gridContainer = document.querySelector('.grid-container');
-
-
-    let currentGap = window.getComputedStyle(document.querySelector('.grid-container')).gridGap;
-    if (currentGap === "1px 1px") {
+    const button = document.querySelector('button.hideLines');
+    let currentGap = window.getComputedStyle(document.querySelector('.grid-container')).gap;
+    if (currentGap === "1px") {
         gridContainer.style.gridGap = "0px";
+        button.textContent = "Display grid lines";
     } else {
         gridContainer.style.gridGap = "1px";
+        button.textContent = "Hide grid lines";
     }
 }
 
@@ -59,9 +65,15 @@ function createGrid(size) {
 
 
 function addBackground(event) {
+    if (randomMode) {
+        color = getRandomColor();
+    }
     event.toElement.style.backgroundColor = color;
 }
-
+function getRandomColor() {
+    Math.floor(Math.random() * 255);
+    return 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+}
 function resetBoard() {
     const gridElementsList = document.querySelectorAll('.grid-element');
     gridElementsList.forEach(gridElement => {
