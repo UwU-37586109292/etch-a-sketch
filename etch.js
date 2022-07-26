@@ -6,16 +6,26 @@ createGrid(16);
 document.querySelector('button.reset').addEventListener('click', resetBoard);
 document.querySelector('button.new').addEventListener('click', drawNewBoard);
 document.querySelector('button.hideLines').addEventListener('click', changeGridLineVisibility);
-document.querySelector('button.colorsRandom').addEventListener('click', changeColorToRandomRoulette);
+document.querySelector('button.colorsRandom').addEventListener('click', controlColorRandomness);
 document.querySelector('#colorpicker').addEventListener('change', updateColorFromPicker);
 
 function updateColorFromPicker(e) {
-    color = e.target.value;
+    if (typeof e === 'undefined') {
+        color = document.querySelector('#colorpicker').value;
+    } else {
+        color = e.target.value;
+    }
     randomMode = false;
 }
 
-function changeColorToRandomRoulette() {
-    randomMode = true;
+function controlColorRandomness() {
+    randomMode = !randomMode;
+    if (randomMode) {
+        document.querySelector('button.colorsRandom').textContent = 'Go back to one color';
+    } else {
+        document.querySelector('button.colorsRandom').textContent = 'Random colors mode';
+        updateColorFromPicker();
+    }
 }
 
 function changeGridLineVisibility() {
