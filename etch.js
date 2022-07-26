@@ -5,6 +5,19 @@ const MAX_BOARD_SIZE = 100;
 createGrid(15);
 document.querySelector('button.reset').addEventListener('click', resetBoard);
 document.querySelector('button.new').addEventListener('click', drawNewBoard);
+document.querySelector('button.hideLines').addEventListener('click', changeGridLineVisibility);
+
+function changeGridLineVisibility() {
+    const gridContainer = document.querySelector('.grid-container');
+
+
+    let currentGap = window.getComputedStyle(document.querySelector('.grid-container')).gridGap;
+    if (currentGap === "1px 1px") {
+        gridContainer.style.gridGap = "0px";
+    } else {
+        gridContainer.style.gridGap = "1px";
+    }
+}
 
 function drawNewBoard() {
     let size = prompt('Provide size of new board');

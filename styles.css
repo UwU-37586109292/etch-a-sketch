@@ -39,8 +39,8 @@ body {
     background-color: white;
 }
 
-.grid-element:hover {
-    background-color: blue;
+.controls {
+    display: flex;
 }
 
 button {
