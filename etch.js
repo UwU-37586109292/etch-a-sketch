@@ -1,4 +1,6 @@
 createGrid(16);
+let color = 'red';
+document.querySelector('button').addEventListener('click', resetBoard);
 
 function createGrid(size) {
 
@@ -16,11 +18,18 @@ function createGrid(size) {
 
 const gridElementsList = document.querySelectorAll('.grid-element');
 gridElementsList.forEach(gridElement => {
+    color = 'red';
     gridElement.addEventListener("mouseover", addBackground);
 });
 
 function addBackground(event) {
-    console.log(event);
-    event.toElement.style.backgroundColor = 'red';
-    // element.style.addBackground = 'red';
+    event.toElement.style.backgroundColor = color;
+}
+
+function resetBoard() {
+    const gridElementsList = document.querySelectorAll('.grid-element');
+    gridElementsList.forEach(gridElement => {
+        gridElement.style.backgroundColor = 'white';
+    }
+    )
 }
